@@ -1,0 +1,536 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+html,body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    // background: rgba(54, 54, 54, 0.32);
+}
+
+.content{
+
+    .action_menu{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 15.6250vw;
+        height: 0;
+        flex-shrink: 0;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        bottom: 1.7519vh;
+
+        border-radius: 1.3021vw;
+        background-color: rgba(0, 0, 0, 0.50);
+
+        z-index: 1;
+        overflow: hidden;
+
+        .btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.0417vw;
+            width: 7.8125vw;
+            height: 1.5625vw;
+            flex-shrink: 0;
+            border-radius: 2.6042vw;
+            border: 1px solid #00BAFF;
+            background: rgba(0, 0, 0, 0.50);
+
+            color: #FFF;
+            font-family: Rajdhani;
+            font-size: 0.5208vw;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+
+            transition: .3s;
+
+            &:hover{
+                cursor: pointer;
+                border: 1px solid #FFF;
+                background: #00BAFF;
+            }
+        }
+
+        .btn.activ{
+            border: 1px solid #FFF;
+            background: #00BAFF;
+        }
+
+        @keyframes slide_up {
+            from{
+                height: 2.6042vw;
+            }
+            to{
+                height: 8.8542vw;
+            }
+        }
+        
+        @keyframes slide_down {
+            0%{
+                height: 8.8542vw;
+            }
+            99%{
+                height: 2.6042vw;
+            }
+            100%{
+                visibility: hidden;
+            }
+        }
+    }
+
+    .action_menu.selected{
+        border: 1px solid #00BAFF;
+        animation: slide_up  1s ease-in-out forwards;
+    }
+
+    .action_menu.not_selected{
+        border: 1px solid #00BAFF;
+        animation: slide_down  1s ease-in-out forwards;
+    }
+
+    .bottom_middle_container{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        column-gap: 1.0417vw;
+        width: 22.9167vw;
+        height: 2.6042vw;
+        
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        bottom: 1.8519vh;
+        flex-shrink: 0;
+
+        // border: 1px solid red;
+
+        .arrow_container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            width: 2.6042vw;
+            height: 2.6042vw;
+            background-color: rgba(0, 0, 0, 0.50);
+            border: 1px solid #00BAFF;
+
+            transition: .5s;
+
+            .icon{
+                width: 0.8333vw;
+                height: 0.9375vw;
+            }
+
+            &:hover{
+                cursor: pointer;
+                border: 1px solid #FFF;
+                background: #00BAFF;
+            }
+        }
+
+        .car_name_wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 15.6250vw;
+            height: 2.6042vw;
+            flex-shrink: 0;
+            border-radius: 2.6042vw;
+            background-color: rgba(0, 0, 0, 0.50);
+            border: 1px solid #00BAFF;
+
+            color: #FFF;
+            font-family: Rajdhani;
+            font-size: 0.7813vw;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            z-index: 2;
+
+            transition: .3s;
+
+            &:hover{
+                cursor: pointer;
+                border: 1px solid #FFF;
+                background: #00BAFF;
+            }
+        }
+
+        .activ{
+            border: 1px solid #FFF;
+            background: #00BAFF;
+        }
+    }
+
+    .top_left_container{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        column-gap: 1.0417vw;
+        left: 1.0417vw;
+        top: 1.0417vw;
+        width: 11.4583vw;
+        height: 2.6042vw;
+        flex-shrink: 0;
+    }
+
+    .top_right_container{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        column-gap: 1.0417vw;
+        right: 1.0417vw;
+        top: 1.0417vw;
+        width: 11.4583vw;
+        height: 2.6042vw;
+        flex-shrink: 0;
+    }
+
+    .bottom_right_container{
+        position: absolute;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: row;
+        column-gap: 1.0417vw;
+        bottom: 1.0417vw;
+        right: 1.0417vw;
+        width: 26.0417vw;
+        height: 3.3854vw;
+
+        .fuel_wrapper{
+            align-self: flex-start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 13.5417vw;
+            height: 2.3438vw;
+            flex-shrink: 0;
+
+            .percentage{
+                text-align: center;
+                color: #FFF;
+                font-family: Rajdhani;
+                font-size: 0.7813vw;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+
+            .progress_bar_wrapper{
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 0.6771vw;
+                width: 100%;
+                height: 0.5208vw;
+                border-radius: 2.6042vw;
+                background: rgba(0, 0, 0, 0.50);
+                overflow: hidden;
+
+                .progress{
+                    width: 0%;
+                    height: 100%;
+                    border-radius: 2.6042vw;
+                    background: #00BAFF;
+                    animation: load_bar .6s linear forwards;
+                }
+
+                @keyframes load_bar {
+                    from{
+                        width: 0;
+                    }
+                }
+            }
+        }
+
+        .circle .icon{
+            width: 0.8854vw;
+            height: 0.8854vw;
+        }
+    }
+
+    .bottom_left_container{
+        position: absolute;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: row;
+        column-gap: 1.0417vw;
+        bottom: 1.0417vw;
+        left: 1.0417vw;
+        width: 26.0417vw;
+        height: 3.3854vw;
+
+        .circle .icon{
+            width: 1.4583vw;
+            height: 0.7813vw;
+        }
+
+        .engineHealth_wrapper{
+            align-self: flex-start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 13.5417vw;
+            height: 2.3438vw;
+            flex-shrink: 0;
+
+            .percentage{
+                text-align: center;
+                color: #FFF;
+                font-family: Rajdhani;
+                font-size: 0.7813vw;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+
+            .progress_bar_wrapper{
+                display: flex;
+                justify-content: flex-start;
+                margin-top: 0.6771vw;
+                width: 100%;
+                height: 0.5208vw;
+                border-radius: 2.6042vw;
+                background: rgba(0, 0, 0, 0.50);
+                overflow: hidden;
+
+                .progress{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 2.6042vw;
+                    animation: load_bar .6s linear forwards;
+                }
+            }
+        }
+    }
+
+    .top_middle{
+        position: absolute;
+        top: 1.0417vw;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+        transition: .4s;
+
+        &:hover{
+            cursor: pointer;
+            border: 1px solid #FFF;
+            background: #00BAFF;
+        }
+    }
+
+    .left_stats{
+        left: 1.0417vw;
+    }
+
+    .right_stats{
+        right: 1.0417vw;
+    }
+
+    .stats_wrapper{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+        align-items: center;
+
+        width: 26.0417vw;
+        height: 10.4167vw;
+        border-radius: 1.3021vw;
+        border: 1px solid #00BAFF;
+        background: rgba(0, 0, 0, 0.50);
+
+        .first_title{
+            margin-top: 1.5625vw;
+            display: flex;
+            flex-wrap: nowrap;
+            width: 23.9583vw;
+            color: #FFF;
+            font-family: Rajdhani;
+            font-size: 0.7813vw;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+
+            .value{
+                margin-left: auto;
+            }
+        }
+
+        .second_title{
+            margin-top: 0.7813vw;
+            display: flex;
+            flex-wrap: nowrap;
+            width: 23.9583vw;
+            color: #FFF;
+            font-family: Rajdhani;
+            font-size: 0.7813vw;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+
+            .value{
+                margin-left: auto;
+            }
+        }
+
+        .progress_bar_wrapper{
+            position: relative;
+            width: 23.9583vw;
+            height: 0.5208vw;
+            border-radius: 2.6042vw;
+            background: rgba(0, 0, 0, 0.50);
+            overflow: hidden;
+
+            .progress{
+                width: 60%;
+                height: 100%;
+                border-radius: 2.6042vw;
+                background: #00BAFF;
+                animation: load_bar .6s linear forwards;
+                transition: .6s;
+            }
+        }
+
+        .first_bar{
+            margin-top: 0.6250vw;
+        }
+
+        .second_bar{
+            margin-top: 2.6042vw;
+        }
+    }
+
+    .rotate_car_container{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        height: 33.8542vw;
+    }
+}
+
+.secondary_circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7.8125vw;
+    height: 2.6042vw;
+    border-radius: 2.6042vw;
+    border: 1px solid #00BAFF;
+    background: rgba(0, 0, 0, 0.50);
+    text-transform: uppercase;
+
+    color: #FFF;
+    font-family: Rajdhani;
+    font-size: 0.7813vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.6042vw;
+    height: 2.6042vw;
+    flex-shrink: 0;
+    background-color: rgba(0, 0, 0, 0.50);
+    border: 1px solid #00BAFF;
+    border-radius: 100%;
+}
+
+.icon{
+    width: 1.3542vw;
+    height: 1.3542vw;
+}
+
+.rotate{
+    transform: rotate(180deg);
+}
+
+.activ{
+    border: 1px solid #FFF;
+    background: #00BAFF;
+}
+
+.green_health{
+    border: 1px solid #00FF75;
+}
+
+.green_progress{
+    background: #00FF75;
+}
+
+.yellow_health{
+    border: 1px solid #FFD600;
+}
+
+.yellow_progress{
+    background: #FFD600;
+}
+
+.orange_health{
+    border: 1px solid #FF7A00;
+}
+
+.orange_progress{
+    background: #FF7A00;
+}
+
+.red_health{
+    border: 1px solid #FF1313;
+}
+
+.red_progress{
+    background: #FF1313;
+}
+
+.red_health .icon{
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.pulse{
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.7s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}

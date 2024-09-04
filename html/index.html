@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--=============== STYLE PRELOAD ===============-->
+    <link rel="preload" as="style" href="./css/reset.css">
+    <link rel="preload" as="style" href="./css/style.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"> -->
+
+    <title>Ghost Garage | --Ax-#0018 </title>
+</head>
+<body>
+    
+    <transition name="fade">
+        <div class="content" v-if="show">
+                <div class="rotate_car_container" @mousemove="updateHeading" @mousedown="activateRotation(true, $event)" @mouseup="activateRotation(false, $event)" @mouseleave="activateRotation(false, $event)"></div>
+
+                <div class="top_left_container">
+                    <div class="circle">
+                        <img src="./assets/steeringwheel.png" alt="" class="icon">
+                    </div>
+                    <div class="secondary_circle">{{garageName}}</div>
+                </div>
+
+                <div class="top_right_container">
+                    <div class="secondary_circle">{{currentCar.plate}}</div>
+                    <div class="circle">
+                        <img src="./assets/player.png" alt="" class="icon">
+                    </div>
+                </div>
+
+                <div class="bottom_middle_container">
+                    <div class="arrow_container" @click="previousCar()">
+                        <img src="./assets/arrow.svg" alt="" class="icon">
+                    </div>
+                    <div class="car_name_wrapper" @click="showActionMenu()" style="text-transform: uppercase;">
+                        {{currentCar.name}}
+                    </div>
+                    <div class="arrow_container" @click="nextCar()">
+                        <img src="./assets/arrow.svg" alt="" class="icon rotate">
+                    </div>
+                </div>
+
+                <div class="action_menu" :class="{'selected': actionMenu === true, 'not_selected': actionMenu === false}">
+                    <div id="inspectVehicle" class="btn" @click="showTopView()">INSPECTEAZA VEHICUL</div>
+                    <div class="btn" @click="getVehicleOut()">SCOATE DIN GARAJ</div>
+                </div>
+
+                <div class="bottom_right_container">
+                    <div class="fuel_wrapper">
+                        <div class="percentage">{{currentCar.fuel}} %</div>
+                        <div class="progress_bar_wrapper">
+                            <div class="progress" :style="{'width': currentCar.fuel + '%'}"></div>
+                        </div>
+                    </div>
+                    <div class="circle">
+                        <img src="./assets/fuel_icon.png" alt="" class="icon" :class="{'pulse': currentCar.fuel <= 10}">
+                    </div>
+                    <div class="secondary_circle">STARE REZERVOR</div>
+                </div>
+
+                <div class="bottom_left_container">
+                    <div class="secondary_circle" 
+                    :class="{'green_health': currentCar.engineHealth >= 75,
+                    'yellow_health': currentCar.engineHealth >= 50 && currentCar.engineHealth < 75,
+                    'orange_health': currentCar.engineHealth >= 25 && currentCar.engineHealth < 50,
+                    'red_health': currentCar.engineHealth < 25
+                    }">STARE MOTOR</div>
+                    <div class="circle" 
+                    :class="{'green_health': currentCar.engineHealth >= 75,
+                            'yellow_health': currentCar.engineHealth >= 50 && currentCar.engineHealth < 75,
+                            'orange_health': currentCar.engineHealth >= 25 && currentCar.engineHealth < 50,
+                            'red_health': currentCar.engineHealth < 25
+                            }">
+                        <img src="./assets/engine.png" alt="" class="icon">
+                    </div>
+                    <div class="engineHealth_wrapper">
+                        <div class="percentage">{{currentCar.engineHealth}} %</div>
+                        <div class="progress_bar_wrapper">
+                            <div 
+                            class="progress" 
+                            :style="{'width': currentCar.engineHealth + '%'}"
+                            :class="{'green_progress': currentCar.engineHealth >= 75,
+                                    'yellow_progress': currentCar.engineHealth >= 50 && currentCar.engineHealth < 75,
+                                    'orange_progress': currentCar.engineHealth >= 25 && currentCar.engineHealth < 50,
+                                    'red_progress': currentCar.engineHealth < 25
+                                    }"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle top_middle" @click="toggleVehicleExtras()" :class="{'activ': inspect}">
+                    <img src="./assets/eye.png" alt="" class="icon">
+                </div>
+
+                <transition name="fade">
+                    <div class="stats_wrapper left_stats" v-show="topView">
+                        <div class="first_title">
+                            <div>VITEZA MAXIMA</div>
+                            <div class="value">{{currentCar.maxSpeed.value}} KM/H</div>
+                        </div>
+                        <div class="progress_bar_wrapper first_bar">
+                            <div class="progress" :style="{'width': currentCar.maxSpeed.percentage + '%'}"></div>
+                        </div>
+
+                        <div class="progress_bar_wrapper second_bar">
+                            <div class="progress" :style="{'width': currentCar.acceleration.percentage + '%'}"></div>
+                        </div>
+                        <div class="second_title">
+                            <div>ACCELERATIE</div>
+                            <div class="value">{{currentCar.acceleration.value}} SEC</div>
+                        </div>
+                    </div>
+                </transition>
+
+                <transition name="fade">
+                    <div class="stats_wrapper right_stats" v-show="topView">
+                        <div class="first_title">
+                            <div>{{currentCar.breaking.value}} M</div>
+                            <div class="value">FRANARE</div>
+                        </div>
+                        <div class="progress_bar_wrapper first_bar">
+                            <div class="progress" :style="{'width': currentCar.breaking.percentage + '%'}"></div>
+                        </div>
+
+                        <div class="progress_bar_wrapper second_bar">
+                            <div class="progress" :style="{'width': currentCar.traction.percentage + '%'}"></div>
+                        </div>
+                        <div class="second_title">
+                            <div style="text-transform: uppercase;">{{currentCar.traction.value}}</div>
+                            <div class="value">TRACTIUNE</div>
+                        </div>
+                    </div>
+                </transition>
+        </div>
+    </transition>
+
+    <!--=============== JQUERY ===============-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>

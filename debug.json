@@ -1,0 +1,26 @@
+[
+  {
+    "acceleration": { "value": 0.2, "percentage": 12 },
+    "maxSpeed": { "value": 149, "percentage": 30 },
+    "model": "brioso",
+    "breaking": { "value": 0.6, "percentage": 24 },
+    "status": "Parcat",
+    "name": "Brioso",
+    "plate": "B 69 AXX",
+    "fuel": "100.0",
+    "traction": { "value": 2, "percentage": 66 },
+    "engineHealth": "1000"
+  },
+  {
+    "acceleration": { "value": 0.2, "percentage": 12 },
+    "maxSpeed": { "value": 149, "percentage": 30 },
+    "model": "brioso",
+    "breaking": { "value": 0.6, "percentage": 24 },
+    "status": "Parcat",
+    "name": "Elegy",
+    "plate": "B 93 IVP",
+    "fuel": "100.0",
+    "traction": { "value": 2, "percentage": 66 },
+    "engineHealth": "1000.0"
+  }
+]
