@@ -219,7 +219,7 @@ RegisterCommand('creategarage', function(source)
         return
     end
 
-    vRP.prompt(source, "Nume Garaj", "Garaj Public", function(player, garageName)
+    vRP.prompt({source, "Nume Garaj", "Garaj Public", function(player, garageName)
         if garageName then
             local coords = GetEntityCoords(GetPlayerPed(player))
             local heading = GetEntityHeading(GetPlayerPed(player))
@@ -244,7 +244,7 @@ RegisterCommand('creategarage', function(source)
                 end
             end)
         end
-    end)
+    end})
 end)
 
 RegisterCommand('removegarage', function(source)
