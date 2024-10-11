@@ -274,6 +274,8 @@ RegisterCommand('removegarage', function(source)
     end
 end)
 
+-- Was i retarded when i did this ? YES, definitely YES
+
 local function extractNumber(str)
     local numberStr = str:match(':%s*(%-?%d+%.?%d*)')
     local number = tonumber(numberStr)
