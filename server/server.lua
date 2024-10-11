@@ -298,7 +298,7 @@ AddEventHandler('onResourceStart', function(resourceName)
                     coords = vec3(extractNumber(x),
                         extractNumber(y),
                         extractNumber(z)),
-                    heading = h,
+                    heading = extractNumber(h),
                     name = rows[i].name
                 })
             end
