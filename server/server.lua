@@ -274,6 +274,13 @@ RegisterCommand('removegarage', function(source)
     end
 end)
 
+local function extractNumber(str)
+    local numberStr = str:match(':%s*(%-?%d+%.?%d*)')
+    local number = tonumber(numberStr)
+
+    return number
+end
+
 AddEventHandler('onResourceStart', function(resourceName)
     if (GetCurrentResourceName() ~= resourceName) then
         return
@@ -288,7 +295,9 @@ AddEventHandler('onResourceStart', function(resourceName)
 
                 table.insert(garages, {
                     id = rows[i].id,
-                    coords = vec3(tonumber(x), tonumber(y), tonumber(z)),
+                    coords = extractNumber(x),
+                    extractNumber(y),
+                    extractNumber(z),
                     heading = h,
                     name = rows[i].name
                 })
@@ -297,6 +306,9 @@ AddEventHandler('onResourceStart', function(resourceName)
             p:resolve(true)
         end
     end)
+
+    Citizen.Await(p)
+end)
 
     Citizen.Await(p)
 end)
