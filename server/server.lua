@@ -295,9 +295,9 @@ AddEventHandler('onResourceStart', function(resourceName)
 
                 table.insert(garages, {
                     id = rows[i].id,
-                    coords = extractNumber(x),
-                    extractNumber(y),
-                    extractNumber(z),
+                    coords = vec3(extractNumber(x),
+                        extractNumber(y),
+                        extractNumber(z)),
                     heading = h,
                     name = rows[i].name
                 })
